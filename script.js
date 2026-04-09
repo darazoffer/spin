@@ -375,7 +375,7 @@ otpForm.addEventListener('submit', (e) => {
     loading.classList.remove('hidden');
     setTimeout(() => {
         loading.classList.add('hidden');
-        alert("Payment verified and ordee submitted successfully!");
+        alert("Payment verified and order submitted successfully!");
         resetFlow();
     }, 1500);
 });
